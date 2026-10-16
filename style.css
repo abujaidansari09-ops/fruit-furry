@@ -1,0 +1,414 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: white;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #05070b;
+}
+
+body {
+  user-select: none;
+}
+
+#app {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 70%,
+      #162b24,
+      #05070b 70%
+    );
+}
+
+
+/* CAMERA */
+
+#camera {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.22;
+
+  transform: scaleX(-1);
+
+  display: none;
+}
+
+
+/* CANVAS */
+
+#game {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  touch-action: none;
+}
+
+
+/* HUD */
+
+.hud {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding: 22px 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      #0009,
+      transparent
+    );
+}
+
+
+.brand {
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  font-size: 22px;
+
+  text-shadow:
+    0 3px 15px #000;
+}
+
+.brand span,
+h1 span {
+  color: #7dff76;
+}
+
+
+/* SCORE BOXES */
+
+.stats {
+  display: flex;
+
+  gap: 12px;
+}
+
+.stats > div {
+  min-width: 80px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #ffffff22;
+
+  border-radius: 14px;
+
+  background: #08100dcc;
+
+  backdrop-filter: blur(10px);
+
+  text-align: center;
+}
+
+.stats small {
+  display: block;
+
+  font-size: 9px;
+
+  color: #aab6b1;
+
+  letter-spacing: 1.5px;
+}
+
+.stats b {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 18px;
+}
+
+
+/* OVERLAY */
+
+.overlay {
+  position: absolute;
+
+  z-index: 10;
+
+  inset: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #02040bb5,
+      #06120bb5
+    );
+
+  backdrop-filter: blur(5px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* PANEL */
+
+.panel {
+  width: min(430px, 90vw);
+
+  padding: 38px;
+
+  border:
+    1px solid #ffffff20;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111b18ee,
+      #07100dee
+    );
+
+  box-shadow:
+    0 30px 100px #0009;
+
+  text-align: center;
+}
+
+
+.logo {
+  font-size: 60px;
+
+  filter:
+    drop-shadow(
+      0 10px 25px #5dff7655
+    );
+}
+
+
+h1 {
+  font-size: 48px;
+
+  line-height: 1;
+
+  margin: 8px 0 12px;
+
+  font-weight: 1000;
+
+  letter-spacing: -2px;
+}
+
+
+h2 {
+  font-size: 38px;
+
+  margin: 10px 0;
+}
+
+
+.panel p {
+  color: #b9c5c0;
+
+  margin: 10px 0 24px;
+}
+
+
+/* BUTTON */
+
+button {
+  width: 100%;
+
+  padding: 15px 20px;
+
+  border: 0;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7dff76,
+      #31d98a
+    );
+
+  color: #06100b;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 35px #44ef8040;
+
+  margin-top: 8px;
+
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+}
+
+
+button.secondary {
+  background: #ffffff10;
+
+  color: white;
+
+  border:
+    1px solid #ffffff20;
+
+  box-shadow: none;
+}
+
+
+.status {
+  font-size: 12px !important;
+
+  margin-top: 14px !important;
+
+  margin-bottom: 0 !important;
+}
+
+
+/* GAME OVER */
+
+#finalScore {
+  display: block;
+
+  font-size: 64px;
+
+  color: #7dff76;
+
+  line-height: 1;
+}
+
+
+/* PAUSE */
+
+#pauseHint {
+  position: absolute;
+
+  z-index: 4;
+
+  right: 20px;
+  bottom: 18px;
+
+  color: #ffffff77;
+
+  font-size: 12px;
+}
+
+
+#pauseScreen {
+  position: absolute;
+
+  z-index: 9;
+
+  inset: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #0007;
+
+  backdrop-filter: blur(3px);
+}
+
+
+.pause-card {
+  padding: 28px 50px;
+
+  border:
+    1px solid #ffffff22;
+
+  border-radius: 20px;
+
+  background: #08100dee;
+
+  text-align: center;
+}
+
+
+.pause-card p {
+  color: #aab6b1;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 600px) {
+
+  .hud {
+    padding: 14px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .stats {
+    gap: 5px;
+  }
+
+  .stats > div {
+    min-width: 62px;
+
+    padding: 6px 7px;
+  }
+
+  .stats b {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .panel {
+    padding: 28px;
+  }
+
+}

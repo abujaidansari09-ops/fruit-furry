@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fruit Fury</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main id="app">
+
+    <!-- Camera -->
+    <video id="camera" autoplay playsinline muted></video>
+
+    <!-- Game -->
+    <canvas id="game"></canvas>
+
+    <!-- HUD -->
+    <header class="hud">
+
+      <div class="brand">
+        🍉 FRUIT <span>FURY</span>
+      </div>
+
+      <div class="stats">
+
+        <div>
+          <small>SCORE</small>
+          <b id="score">0</b>
+        </div>
+
+        <div>
+          <small>COMBO</small>
+          <b id="combo">x1</b>
+        </div>
+
+        <div>
+          <small>LIVES</small>
+          <b id="lives">❤️❤️❤️</b>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- Start Menu -->
+    <section id="menu" class="overlay">
+
+      <div class="panel">
+
+        <div class="logo">🍉</div>
+
+        <h1>
+          FRUIT <span>FURY</span>
+        </h1>
+
+        <p>
+          Turn your index finger into a blade.
+        </p>
+
+        <button id="startBtn">
+          START GAME
+        </button>
+
+        <button id="cameraBtn" class="secondary">
+          📷 Enable Camera
+        </button>
+
+        <p id="status" class="status">
+          Mouse/touch works automatically.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- Game Over -->
+    <section id="gameOver" class="overlay hidden">
+
+      <div class="panel">
+
+        <div class="logo">💥</div>
+
+        <h2>GAME OVER</h2>
+
+        <p>Your score</p>
+
+        <strong id="finalScore">0</strong>
+
+        <p id="bestLine">
+          Best: 0
+        </p>
+
+        <button id="restartBtn">
+          PLAY AGAIN
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- Pause -->
+    <div id="pauseHint">
+      Press <b>P</b> to pause
+    </div>
+
+    <div id="pauseScreen" class="hidden">
+
+      <div class="pause-card">
+
+        <h2>PAUSED</h2>
+
+        <p>
+          Press P to continue
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="game.js"></script>
+
+</body>
+</html>* {
+  
